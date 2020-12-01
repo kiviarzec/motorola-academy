@@ -14,14 +14,18 @@ namespace MotorolaAcademy
             for (int i = 0; i < lines.Length; i++)
             {
                 Console.WriteLine(lines[i]);
-            }      
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-}
+            }
+
+            // Instantiate random number generator using system-supplied value as seed.
+            var random = new Random();
+            int randomIndex = random.Next(0,lines.Length-1);  // creates a number between 1 and 12
+
+            Console.WriteLine(randomIndex);
+
+            string randomLine = lines[randomIndex];
+            Console.WriteLine(randomLine);
+
+
+        }
     }
 }
