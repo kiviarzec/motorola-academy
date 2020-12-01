@@ -1,0 +1,13 @@
+C:\Users\kaerz\Documents\motorola-academy\MotorolaAcademy\MotorolaAcademy\bin\Debug\netcoreapp3.1\MotorolaAcademy.exe
+C:\Users\kaerz\Documents\motorola-academy\MotorolaAcademy\MotorolaAcademy\bin\Debug\netcoreapp3.1\MotorolaAcademy.deps.json
+C:\Users\kaerz\Documents\motorola-academy\MotorolaAcademy\MotorolaAcademy\bin\Debug\netcoreapp3.1\MotorolaAcademy.runtimeconfig.json
+C:\Users\kaerz\Documents\motorola-academy\MotorolaAcademy\MotorolaAcademy\bin\Debug\netcoreapp3.1\MotorolaAcademy.runtimeconfig.dev.json
+C:\Users\kaerz\Documents\motorola-academy\MotorolaAcademy\MotorolaAcademy\bin\Debug\netcoreapp3.1\MotorolaAcademy.dll
+C:\Users\kaerz\Documents\motorola-academy\MotorolaAcademy\MotorolaAcademy\bin\Debug\netcoreapp3.1\MotorolaAcademy.pdb
+C:\Users\kaerz\Documents\motorola-academy\MotorolaAcademy\MotorolaAcademy\obj\Debug\netcoreapp3.1\MotorolaAcademy.csprojAssemblyReference.cache
+C:\Users\kaerz\Documents\motorola-academy\MotorolaAcademy\MotorolaAcademy\obj\Debug\netcoreapp3.1\MotorolaAcademy.AssemblyInfoInputs.cache
+C:\Users\kaerz\Documents\motorola-academy\MotorolaAcademy\MotorolaAcademy\obj\Debug\netcoreapp3.1\MotorolaAcademy.AssemblyInfo.cs
+C:\Users\kaerz\Documents\motorola-academy\MotorolaAcademy\MotorolaAcademy\obj\Debug\netcoreapp3.1\MotorolaAcademy.csproj.CoreCompileInputs.cache
+C:\Users\kaerz\Documents\motorola-academy\MotorolaAcademy\MotorolaAcademy\obj\Debug\netcoreapp3.1\MotorolaAcademy.dll
+C:\Users\kaerz\Documents\motorola-academy\MotorolaAcademy\MotorolaAcademy\obj\Debug\netcoreapp3.1\MotorolaAcademy.pdb
+C:\Users\kaerz\Documents\motorola-academy\MotorolaAcademy\MotorolaAcademy\obj\Debug\netcoreapp3.1\MotorolaAcademy.genruntimeconfig.cache
