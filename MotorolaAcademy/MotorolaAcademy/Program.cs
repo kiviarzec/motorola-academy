@@ -52,6 +52,7 @@ namespace MotorolaAcademy
 
 
                 int lives = 5;
+                int attemps = 0;
                 Console.WriteLine("You've got " + lives + " lives");
 
                 char[] notInWordList = new char[] { '_', '_', '_', '_', '_' };
@@ -73,6 +74,8 @@ namespace MotorolaAcademy
                     Console.WriteLine("Write LETTER or WORD to choose");
 
 
+                    attemps++;
+
                     string choose = Console.ReadLine().ToUpper();
 
                     if (choose == "WORD")
@@ -83,6 +86,7 @@ namespace MotorolaAcademy
                         if (guessWord == capital)
                         {
                             Console.WriteLine("That's correct!");
+                          
                             break;
                         }
                         else
@@ -141,9 +145,6 @@ namespace MotorolaAcademy
 
                             notInWordList[5 - lives] = guessLetter[0];
 
-
-
-
                             lives--;
                             Console.WriteLine("You've got " + lives + " lives");
 
@@ -166,7 +167,9 @@ namespace MotorolaAcademy
 
                 sw.Stop();
 
-                Console.WriteLine("Time of play={0}", sw.Elapsed);
+                Console.WriteLine("Time of play" + sw.Elapsed);
+                Console.WriteLine("It took you " + attemps + "attemps");
+
 
                 Console.WriteLine("Do you want to play again?");
                 Console.WriteLine("Write YES to continue.");
