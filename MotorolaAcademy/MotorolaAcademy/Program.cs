@@ -26,46 +26,80 @@ namespace MotorolaAcademy
             Console.WriteLine(randomLine);
 
             string[] words = randomLine.Split(" | ");
-            string country = words[0];
-            string capital = words[1];
+            string country = words[0].ToUpper();
+            string capital = words[1].ToUpper();
             Console.WriteLine(country);
             Console.WriteLine(capital);
 
             int lives = 5;
             Console.WriteLine("You've got " + lives + " lives");
 
-            Console.WriteLine("What capital am I thinking about?");
+            Console.WriteLine("Let's play!");
+            Console.WriteLine("Do you want to guess a single letter or the whole word?");
+            Console.WriteLine("Write LETTER or WORD to choose");
 
-            while (lives > 0)
+         
+            string choose = Console.ReadLine().ToUpper();
+
+            if (choose == "WORD")
             {
-
-                string guess = Console.ReadLine();
-
-                if (guess == capital)
+                Console.WriteLine("Guess the whole word:");
+                while (lives > 0)
                 {
-                    Console.WriteLine("That's correct!");
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("That's incorrect!");
-                    lives--;
-                    Console.WriteLine("You've got " + lives + " lives");
 
-                    if (lives != 0)
+                    string guessWord = Console.ReadLine().ToUpper();
+
+                    if (guessWord == capital)
                     {
-                        Console.WriteLine("Try again");
+                        Console.WriteLine("That's correct!");
+                        break;
                     }
                     else
                     {
-                        Console.WriteLine("Game over!");
+                        Console.WriteLine("That's incorrect!");
+                        lives--;
+                        Console.WriteLine("You've got " + lives + " lives");
+
+                        if (lives != 0)
+                        {
+                            Console.WriteLine("Try again");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Game over!");
+                        }
+                    }
+
+                } 
+            }
+            else if (choose == "LETTER") 
+            {
+                Console.WriteLine("Guess a letter:");
+
+                string guessLetter = Console.ReadLine().ToUpper();
+                Console.WriteLine("You chose " + guessLetter);
+
+
+                for (int i = 0; i < capital.Length; i++)
+
+                {
+                    Console.WriteLine(capital[i]);
+
+                    if (guessLetter[0] == capital[i])
+                    {
+                        Console.WriteLine("That letter is in that word!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("That letter isn't in that word!");
+
                     }
                 }
-
             }
-
-
-
+            else
+            {
+                Console.WriteLine("Incorrect value");
+            }
 
         }
     }
