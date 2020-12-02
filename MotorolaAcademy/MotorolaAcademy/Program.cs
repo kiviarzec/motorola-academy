@@ -31,18 +31,38 @@ namespace MotorolaAcademy
             Console.WriteLine(country);
             Console.WriteLine(capital);
 
-            string guess = Console.ReadLine();
+            int lives = 5;
+            Console.WriteLine("You've got " + lives + " lives");
 
-            if (guess == capital)
+            Console.WriteLine("What capital am I thinking about?");
+
+            while (lives > 0)
             {
-                Console.WriteLine("That's correct!");
-            }
-            else
-            {
-                Console.WriteLine("That's incorrect!");
-            }
 
+                string guess = Console.ReadLine();
 
+                if (guess == capital)
+                {
+                    Console.WriteLine("That's correct!");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("That's incorrect!");
+                    lives--;
+                    Console.WriteLine("You've got " + lives + " lives");
+
+                    if (lives != 0)
+                    {
+                        Console.WriteLine("Try again");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Game over!");
+                    }
+                }
+
+            }
 
 
 
