@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+
 
 namespace MotorolaAcademy
 {
@@ -42,6 +44,11 @@ namespace MotorolaAcademy
                 {
                     capitalAsChars[i] = '_';
                 }
+
+                Stopwatch sw = new Stopwatch();
+
+                sw.Start();
+
 
 
                 int lives = 5;
@@ -157,9 +164,15 @@ namespace MotorolaAcademy
                     }
                 }
 
+                sw.Stop();
+
+                Console.WriteLine("Time of play={0}", sw.Elapsed);
+
                 Console.WriteLine("Do you want to play again?");
                 Console.WriteLine("Write YES to continue.");
                 again = Console.ReadLine().ToUpper();
+
+
 
             } while (again == "YES");
         }
