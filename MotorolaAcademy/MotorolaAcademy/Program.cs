@@ -110,7 +110,16 @@ namespace MotorolaAcademy
                                 Console.WriteLine("That letter is in that word!");
 
                                 capitalAsChars[i] = guessLetter[0];
+
                             }
+
+                        }
+
+                        string capitalAsString = new string(capitalAsChars);
+                        if (!capitalAsString.Contains('_'))
+                        {
+                            Console.WriteLine("Good job. You won!");
+                            break;
 
                         }
                     }
