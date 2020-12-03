@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime;
+using System.IO;
 
 
 namespace MotorolaAcademy
@@ -49,10 +51,10 @@ namespace MotorolaAcademy
 
                 sw.Start();
 
-
-
+               
                 int lives = 5;
                 int attemps = 0;
+                bool success = false;
                 Console.WriteLine("You've got " + lives + " lives");
 
                 char[] notInWordList = new char[] { '_', '_', '_', '_', '_' };
@@ -86,13 +88,23 @@ namespace MotorolaAcademy
                         if (guessWord == capital)
                         {
                             Console.WriteLine("That's correct!");
-                          
+                            success = true;
+
                             break;
                         }
                         else
                         {
                             Console.WriteLine("That's incorrect!");
-                            lives--;
+
+                            if (lives >= 2)
+                            {
+                                lives = lives - 2;
+                            }
+                            else
+                            {
+                                lives--;                          
+                            }
+
                             Console.WriteLine("You've got " + lives + " lives");
 
                             if (lives != 0)
@@ -133,7 +145,9 @@ namespace MotorolaAcademy
                             string capitalAsString = new string(capitalAsChars);
                             if (!capitalAsString.Contains('_'))
                             {
-                                Console.WriteLine("Good job. You won!");
+                                Console.WriteLine("Good job. You won!");       
+                                success = true;
+
                                 break;
 
                             }
@@ -165,17 +179,36 @@ namespace MotorolaAcademy
                     }
                 }
 
+
+
                 sw.Stop();
 
                 Console.WriteLine("Time of play" + sw.Elapsed);
-                Console.WriteLine("It took you " + attemps + "attemps");
+                Console.WriteLine("It took you " + attemps + " attemps");
+      
+                if (success == true)
+                {
+                    Console.WriteLine("What is your name?");
+                    string name = Console.ReadLine();
+                    string now = DateTime.Now.ToString();
+                    long seconds = sw.ElapsedMilliseconds / 1000;
 
+                    string score = name + " | " + now + " | " + seconds + " | " + capital;
+
+                    using (System.IO.StreamWriter file =
+                        new System.IO.StreamWriter(@"C:\Users\kaerz\Documents\motorola-academy\highscores.txt", true))
+                    {
+                        file.WriteLine(score);
+
+                    }
+
+                    Console.WriteLine("Score saved in file.");
+                }
 
                 Console.WriteLine("Do you want to play again?");
+
                 Console.WriteLine("Write YES to continue.");
                 again = Console.ReadLine().ToUpper();
-
-
 
             } while (again == "YES");
         }
