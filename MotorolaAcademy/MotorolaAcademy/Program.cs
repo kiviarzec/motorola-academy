@@ -1,13 +1,73 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Runtime;
-using System.IO;
 
 
 namespace MotorolaAcademy
 {
     class Program
     {
+
+
+
+        static string getRandomLine()
+        {
+            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\kaerz\Documents\motorola-academy\countries_and_capitals.txt.txt");
+            
+            var random = new Random();
+            int randomIndex = random.Next(0, lines.Length - 1);
+            string randomLine = lines[randomIndex];
+
+            return randomLine;
+        }
+
+        static char[] capitalToDashes(string capital)
+        {
+            char[] capitalAsChars = capital.ToCharArray();
+            for (int i = 0; i < capitalAsChars.Length; i++)
+            {
+                capitalAsChars[i] = '_';
+            }
+
+            return capitalAsChars;
+        }
+
+        static void printUserData(char[] passwordAsChars, char[] notInWordLettersAsChars, int lives)
+        {
+            Console.WriteLine("You've got " + lives + " lives");
+
+            Console.WriteLine("Capital to guess : ");
+            Console.WriteLine(passwordAsChars);
+
+            Console.WriteLine("Not in word list : ");
+            Console.WriteLine(notInWordLettersAsChars);
+            
+        }
+
+        static void saveScore(string capital, long seconds)
+        {
+            Console.WriteLine("What is your name?");
+            string name = Console.ReadLine();
+            string now = DateTime.Now.ToString();
+
+            string score = name + " | " + now + " | " + seconds + " | " + capital;
+
+            using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter(@"C:\Users\kaerz\Documents\motorola-academy\highscores.txt", true))
+            {
+                file.WriteLine(score);
+
+            }
+
+            Console.WriteLine("Score saved in file.");
+        }
+
+        static void gameOver(string country)
+        {
+            Console.WriteLine("Game over!");
+            Console.WriteLine("");
+            Console.WriteLine("It was a capitol of " + country);
+        }
+
         static void Main(string[] args)
         {
 
@@ -16,49 +76,31 @@ namespace MotorolaAcademy
             do
             {
 
-                string[] lines = System.IO.File.ReadAllLines(@"C:\Users\kaerz\Documents\motorola-academy\countries_and_capitals.txt.txt");
-
-                var random = new Random();
-                int randomIndex = random.Next(0, lines.Length - 1); 
-
-                string randomLine = lines[randomIndex];
+                string randomLine = getRandomLine();
 
                 string[] words = randomLine.Split(" | ");
                 string country = words[0].ToUpper();
                 string capital = words[1].ToUpper();
 
-                char[] capitalAsChars = capital.ToCharArray();
-                Console.WriteLine(capitalAsChars);
-                for (int i = 0; i < capitalAsChars.Length; i++)
-                {
-                    capitalAsChars[i] = '_';
-                }
-
+                char[] capitalAsChars = capitalToDashes(capital);
                 Stopwatch sw = new Stopwatch();
 
                 sw.Start();
-
-               
                 int lives = 5;
                 int attemps = 0;
                 bool success = false;
-                Console.WriteLine("You've got " + lives + " lives");
-
                 char[] notInWordList = new char[] { '_', '_', '_', '_', '_' };
 
-
                 Console.WriteLine("Let's play!");
+                Console.WriteLine("");
 
                 while (lives > 0)
                 {
 
-                    Console.WriteLine("Capital to guess : ");
-                    Console.WriteLine(capitalAsChars);
 
-                    Console.WriteLine("Not in word list : ");
-                    Console.WriteLine(notInWordList);
+                    printUserData(capitalAsChars, notInWordList, lives);
 
-
+                    Console.WriteLine("");
                     Console.WriteLine("Do you want to guess a single letter or the whole word?");
                     Console.WriteLine("Write LETTER or WORD to choose");
 
@@ -90,17 +132,6 @@ namespace MotorolaAcademy
                             else
                             {
                                 lives--;                          
-                            }
-
-                            Console.WriteLine("You've got " + lives + " lives");
-
-                            if (lives != 0)
-                            {
-                                Console.WriteLine("Try again");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Game over!");
                             }
                         }
 
@@ -147,49 +178,36 @@ namespace MotorolaAcademy
                             notInWordList[5 - lives] = guessLetter[0];
 
                             lives--;
-                            Console.WriteLine("You've got " + lives + " lives");
 
-                            if (lives != 0)
-                            {
-                                Console.WriteLine("Try again");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Game over!");
-                                Console.WriteLine("It was a capitol of " + country);
-                            }
+
                         }
                     }
                     else
                     {
                         Console.WriteLine("Incorrect value");
                     }
+
+                    if (lives != 0)
+                    {
+                        Console.WriteLine("Try again");
+                        Console.WriteLine("");
+                    }
+                    else
+                    {
+                        gameOver(country);
+                    }
                 }
 
 
 
                 sw.Stop();
-
-                Console.WriteLine("Time of play" + sw.Elapsed);
+                long seconds = sw.ElapsedMilliseconds / 1000;
+                Console.WriteLine("Time of play " + seconds + " seconds");
                 Console.WriteLine("It took you " + attemps + " attemps");
       
                 if (success == true)
                 {
-                    Console.WriteLine("What is your name?");
-                    string name = Console.ReadLine();
-                    string now = DateTime.Now.ToString();
-                    long seconds = sw.ElapsedMilliseconds / 1000;
-
-                    string score = name + " | " + now + " | " + seconds + " | " + capital;
-
-                    using (System.IO.StreamWriter file =
-                        new System.IO.StreamWriter(@"C:\Users\kaerz\Documents\motorola-academy\highscores.txt", true))
-                    {
-                        file.WriteLine(score);
-
-                    }
-
-                    Console.WriteLine("Score saved in file.");
+                    saveScore(capital, seconds);
                 }
 
                 Console.WriteLine("Do you want to play again?");
